@@ -45,7 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <span class="icon-bar"></span>
           </button>
                 <a class="navbar-brand" href="index.html">
-                    <h1><img src="{% static 'Scripts/images/logo.png' %}" alt="" /></h1>
+                    <h1><img src="{% static 'Scripts/images/vp9logo.png' %}" alt="" /></h1>
                 </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </form>
                     </div>
                     <div class="signin">
-                        <a href="#small-dialog2" class="play-icon popup-with-zoom-anim">Sign Up</a>
+                        <!--<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">Sign Up</a>-->
                         <!-- pop-up-box -->
                         <script type="text/javascript" src="{% static 'Scripts/js/modernizr.custom.min.js' %}"></script>
                         <link href="{% static 'Scripts/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
@@ -208,7 +208,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </script>
                     </div>
                     <div class="signin">
-                        <a href="index.html" class="play-icon popup-with-zoom-anim">Log out</a>
+                        <!--<a href="index.html" class="play-icon popup-with-zoom-anim">Log out</a>-->
                         
                     </div>
                     <div class="clearfix"> </div>
@@ -299,9 +299,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="clearfix"> </div>
                 </div>
                 <div class="recommended-grids">
-                    <div class="col-md-3 resent-grid recommended-grid">
+                    {% for item in length %}
+                        <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href="single.html"><img id="img1" src="{% static 'Scripts/images/r4.jpg' %}" alt="" /></a>
+                            <a href="single.html"><img id="img{{item}}" src="" alt="" /></a>
                             <div class="time small-time">
                                 <p>6:34</p>
                             </div>
@@ -310,86 +311,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                         </div>
                         <div class="resent-grid-info recommended-grid-info video-info-grid">
-                            <h5><a href="single.html" class="title" id="title1">Varius sit sed viverra nullam viverra nullam interdum metus</a></h5>
+                            <h5><p class="title" id="title{{item}}">Title</p></h5>
                             <ul>
                                 <li>
-                                    <p id="theloai1" class="author author-info">John Maniya</p>
+                                    <p id="theloai{{item}}" class="author author-info"></p>
                                 </li>
                                 <li class="right-list">
-                                    <p class="views views-info">2,114,200 views</p>
+                                    <p class="views views-info"></p>
                                 </li>
                             </ul>
                         </div>
                     </div>
-
-                    <div class="col-md-3 resent-grid recommended-grid">
-                        <div class="resent-grid-img recommended-grid-img">
-                            <a href="single.html"><img id="img2" src="{% static 'Scripts/images/r5.jpg' %}" alt="" /></a>
-                            <div class="time small-time">
-                                <p>7:34</p>
-                            </div>
-                            <div class="clck small-clck">
-                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="resent-grid-info recommended-grid-info video-info-grid">
-                            <h5><a href="single.html" class="title" id="title2">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                            <ul>
-                                <li>
-                                    <p class="author author-info" id="theloai2"> John Maniya</p>
-                                </li>
-                                <li class="right-list">
-                                    <p class="views views-info">2,114,200 views</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 resent-grid recommended-grid">
-                        <div class="resent-grid-img recommended-grid-img">
-                            <a href="single.html"><img id="img3" src="{% static 'Scripts/images/r6.jpg' %}" alt="" /></a>
-                            <div class="time small-time">
-                                <p>6:09</p>
-                            </div>
-                            <div class="clck small-clck">
-                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="resent-grid-info recommended-grid-info video-info-grid">
-                            <h5><a id="title3" href="single.html" class="title">Varius sit sed viverra nullam viverra nullam interdum metus</a></h5>
-                            <ul>
-                                <li>
-                                    <p class="author author-info" id="theloai3"> John Maniya</p>
-                                </li>
-                                <li class="right-list">
-                                    <p class="views views-info">2,114,200 views</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 resent-grid recommended-grid">
-                        <div class="resent-grid-img recommended-grid-img">
-                            <a href="single.html"><img id="img4" src="{% static 'Scripts/images/r1.jpg' %}" alt="" /></a>
-                            <div class="time small-time">
-                                <p>9:04</p>
-                            </div>
-                            <div class="clck small-clck">
-                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="resent-grid-info recommended-grid-info video-info-grid">
-                            <h5><a href="single.html" class="title" id="title4">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                            <ul>
-                                <li>
-                                    <p class="author author-info" id="theloai4">John Maniya</p>
-                                </li>
-                                <li class="right-list">
-                                    <p class="views views-info">2,114,200 views</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    
                     <div class="clearfix"> </div>
                 </div>
             </div>
@@ -765,6 +699,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
                 var movieIds = {{ movieIds | safe }};
                 var movies = [];
+                var index = 0;
                 console.log(movieIds);
                 $(document).ready(function () {
                     var requests = [];
@@ -778,20 +713,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             "data": "{}"
                         }
                         requests.push($.ajax(settings).done(function (response) {
+                            index++;
                             console.log(response);
                             movies.push(response);
+                            document.getElementById('img'+(index)).src = 'https://image.tmdb.org/t/p/w500' + response.backdrop_path;
+                            document.getElementById("title"+(index)).innerHTML = response.title;
+                            document.getElementById("theloai"+(index)).innerHTML = response.genres[0].name;
+                            console.log("movies loop:" + movies)
+                            console.log("index: " + index)
                         }))
                     }
-                    $.when.apply(undefined, requests).then(function () {
-                        for (i = 0; i<movies.length; i++){
-                            document.getElementById('img'+(i+1)).src = 'https://image.tmdb.org/t/p/w500' + movies[i].backdrop_path;
-                            document.getElementById("title"+(i+1)).innerHTML = movies[i].title;
-                            document.getElementById("theloai"+(i+1)).innerHTML = movies[i].genres[0].name;
-                        }
+                    // $.when.apply(undefined, requests).then(function () {
+                    //     for (i = 0; i<movies.length; i++){
+                    //         console.log("i:" + i);
+                    //         document.getElementById('img'+(i+1)).src = 'https://image.tmdb.org/t/p/w500' + movies[i].backdrop_path;
+                    //         document.getElementById("title"+(i+1)).innerHTML = movies[i].title;
+                    //         document.getElementById("theloai"+(i+1)).innerHTML = movies[i].genres[0].name;
+                    //     }
 
-                        //console.log("i:" + i);
-                    })
-
+                    //     //console.log("i:" + i);
+                    // })
+                    // console.log("movies: " + movies)
                 });
 
 </script>
