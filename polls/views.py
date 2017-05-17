@@ -6,17 +6,41 @@ import predictionio
 import json
 import csv
 
-def index(request):
-    # data = '{ "user": "1", "num": 4 }'
-    # url = 'http://localhost:8000/queries.json'
-    # req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
-    # f = urllib2.urlopen(req)
-    userName = 123
+def ReadFileDat(fileName, search):
+    movieIds = []
+    fileDat = open(fileName,"r")
+    lines = fileDat.readlines()
+    # with open('links.csv') as file:
+    #     for item in lines:
+    #         if search.lower() in search.lower():
+    #             print "item:" + item[0][0]
+    #             movieIdsInMoviesLens.append(item[0][0])
+
+    for item in lines:
+        #print item.decode('iso-8859-1').encode('utf8')
+        with open('links.csv') as fileCsv:
+            reader = csv.reader(fileCsv) 
+            if (search.lower() in item.lower()):
+                print "item: " + item
+                index = item.index("::")
+                item = item[0:index]
+                print "item slit: " + item
+                for row in reader:
+                    if row[0] == item:
+                       #print row[0]
+                       print "movies Id: " + row[2]
+                       movieIds.append(row[2])                 
+    return  movieIds
     
-    # print userName
-    engine_client = predictionio.EngineClient(url="http://localhost:8000")
-    r = engine_client.send_query({"user": "1", "num": 4})
-    return render(request, 'index.html',{'username':json.dumps(r)})
+
+def index(request):
+    #search = ""
+    if request.method == 'POST':
+        search = request.POST['search']
+    # if search in "1::Toy Story (1995)::Animation|Children's|Comedy":
+    #     print "co roi ne"
+        ReadFileDat("movies.dat",search)
+    return render(request, 'search.html')
 
 def signin(request):
     if request.method == 'POST':
@@ -44,3 +68,6 @@ def signin(request):
 def t(request, hello):
     text = helo
     return HttpResponse(text)
+
+def search(request):
+    return true
