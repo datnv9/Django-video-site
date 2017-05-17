@@ -14,7 +14,7 @@ def ReadFileDat(fileName, search):
     #     for item in lines:
     #         if search.lower() in search.lower():
     #             print "item:" + item[0][0]
-    #             movieIdsInMoviesLens.append(item[0][0])
+    #             movieIdsInMoviesLensss.append(item[0][0])
 
     for item in lines:
         #print item.decode('iso-8859-1').encode('utf8')
@@ -43,31 +43,40 @@ def index(request):
     return render(request, 'search.html')
 
 def signin(request):
-    if request.method == 'POST':
-        userName = request.POST['username']
-    engine_client = predictionio.EngineClient(url="http://localhost:8000")
-    r = engine_client.send_query({"user": userName, "num": 8})
-    m = json.dumps(r)
-    js = json.loads(m)
-    
-    #for index in range(0:3):
-    movieIds = []
-    #Read file csv
+    # length = 8
+    # if request.method == 'POST':
+    #     userName = request.POST['username']
+    # engine_client = predictionio.EngineClient(url="http://192.168.99.100:8000")
+    # r = engine_client.send_query({"user": 1, "num": length})
+    # m = json.dumps(r)
+    # js = json.loads(m)
+
+    # loops = []
+    # for item in range(1,length+1):
+    #     loops.append(item)
+    # #for index in range(0:3):
+    # movieIds = []
+    # #Read file csv
         
-    for item in js['itemScores']:
-        print item
-        with open('links.csv') as file:
-            reader = csv.reader(file) 
-            for row in reader:
-                if row[0] == item['item']:
-                    movieIds.append(row[2])
+    # for item in js['itemScores']:
+    #     print item
+    #     with open('links.csv') as file:
+    #         reader = csv.reader(file) 
+    #         for row in reader:
+    #             if row[0] == item['item']:
+    #                 movieIds.append(row[2])
     
-    
-    return render(request, 't.html', {'movieIds':json.dumps(movieIds)})
+    return render(request, 't.html')
+    #return render(request, 't.html', {'movieIds':json.dumps(movieIds), 'length':loops})
     #return HttpResponse(json.dumps(movieIds))
-def t(request, hello):
-    text = helo
-    return HttpResponse(text)
+def t(request):
+    if request.method == 'GET':
+        return render(request, 'index.html')
 
 def search(request):
     return true
+
+def signout(request):
+    print "signout"
+    if request.method == 'GET':
+        return render(request, 'index.html')
