@@ -28,6 +28,9 @@ def ReadFileDat(fileName, search):
     
 
 def index(request):
+    if 'user' not in request.session:
+        return HttpResponseRedirect('/polls/signin');
+    user = request.session['user']
     search = ""
     m = []
     if request.method == 'POST':
@@ -35,6 +38,9 @@ def index(request):
         print "search:" + search
     # if search in "1::Toy Story (1995)::Animation|Children's|Comedy":
     #     print "co roi ne"
+    else:
+         return render(request, 'index.html')  
+
     movieIds = []
     fileDat = open("movies.dat","r")
     lines = fileDat.readlines()
@@ -52,24 +58,35 @@ def index(request):
                        #print row[0]
                        #print "movies Id: " + row[2]
                        movieIds.append(row[2]) 
-            print movieIds
-    else:
-        return render(request, 'index.html')        
+            #print movieIds
+           
     loops = []
-    for item in range(1,len(movieIds)):
+    for item in range(1,len(movieIds)+1):
+        print item
+        print len(movieIds)
         loops.append(item)
-    return render(request, 'search.html', {'movieIds':json.dumps(movieIds), 'length':1})
+    return render(request, 'search.html', {'movieIds':json.dumps(movieIds), 'length':loops})
     
 
 def signin(request):
+    
+    mostpopular = 6
+    lengthMostPopular = []
+    for item in range(1,mostpopular+1):
+        lengthMostPopular.append(item)
+
     length = 36
     if request.method == 'POST':
         userName = request.POST['username']
+        request.session['user'] = userName
+    handle = open(userName,"r+")
+    
+    
+    
     engine_client = predictionio.EngineClient(url="http://localhost:8000")
     r = engine_client.send_query({"user": userName, "num": length})
     m = json.dumps(r)
     js = json.loads(m)
-    print js
     loops = []
     for item in range(1,length+1):
         loops.append(item)
@@ -84,10 +101,10 @@ def signin(request):
             for row in reader:
                 if row[0] == item['item']:
                     movieIds.append(row[2])
-    return render(request, 't.html', {'movieIds':json.dumps(movieIds), 'length':loops})
+    return render(request, 'index.html', {'movieIds':json.dumps(movieIds), 'length':loops, 'lengthMostPopular':lengthMostPopular})
     #return HttpResponse(json.dumps(movieIds))
     
-def t(request):
+def recommend(request):
     if request.method == 'GET':
         return render(request, 'index.html')
 
@@ -97,4 +114,11 @@ def search(request):
 def signout(request):
     print "signout"
     if request.method == 'GET':
-        return render(request, 'index.html')
+        return render(request, 'signin.html')
+
+def single(request):
+    if request.method == 'POST':
+        newuser = request.POST['newuser']
+        print "newuser:" + newuser + "\n"
+
+    return render(request, "single.html")

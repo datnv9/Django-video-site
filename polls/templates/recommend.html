@@ -50,11 +50,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="top-search">
-                    <form class="navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <input type="submit" value=" ">
-                    </form>
-                </div>
+				<form action="{% url 'index' %}" method="post" class="navbar-form navbar-right">
+					{% csrf_token %}
+					<input name = "search" search type="text" class="form-control" placeholder="Search...">
+					<input type="submit" value=" ">
+				</form>
+			</div>
                 <div class="header-top-right">
                     <div class="file">
                         <form method="GET" action="{% url 'signout' %}">
@@ -315,6 +316,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <ul>
                                 <li>
                                     <p id="theloai{{item}}" class="author author-info"></p>
+                                    <p id="theloai1{{item}}" class="author author-info"></p>
+                                    <p id="theloai2{{item}}" class="author author-info"></p>
                                 </li>
                                 <li class="right-list">
                                     <p class="views views-info"></p>
@@ -719,6 +722,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             document.getElementById('img'+(index)).src = 'https://image.tmdb.org/t/p/w500' + response.backdrop_path;
                             document.getElementById("title"+(index)).innerHTML = response.title;
                             document.getElementById("theloai"+(index)).innerHTML = response.genres[0].name;
+                            document.getElementById("theloai1"+(index)).innerHTML = response.genres[1].name;
+                            document.getElementById("theloai2"+(index)).innerHTML = response.genres[2].name;
                             console.log("movies loop:" + movies)
                             console.log("index: " + index)
                         }))
