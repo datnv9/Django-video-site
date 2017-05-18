@@ -294,10 +294,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h3>Popular Videos</h3>
 					</div>
 					
-					{% for item in lengthMostPopular %}
+					
                         <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href="single.html"><img id="imgm{{item}}" src="" alt="" /></a>
+                            <a href=""><img id="imgm" src="{% static 'Scripts/images/endofdays.jpg' %}" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -306,12 +306,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                         </div>
                         <div class="resent-grid-info recommended-grid-info video-info-grid">
-                            <h5><p class="title" id="titlem{{item}}">Title</p></h5>
+                            <h5><p class="title" id="titlem">End Of Days</p></h5>
+                            <form action="{% url 'single' %}" method="POST">
+                                {% csrf_token %}
+                                <input type = "hidden" value="9946" id="mid" name="mid"/>
+                                <button type="sumit" name="single">View</button>
+                            </form>
                             <ul>
                                 <li>
-                                    <p id="theloaim{{item}}" class="author author-info"></p>
-                                    <p id="theloaim1{{item}}" class="author author-info"></p>
-                                    <p id="theloaim2{{item}}" class="author author-info"></p>
+                                    <p id="theloaim" class="author author-info">Action</p>
+                                    <p id="theloaim1" class="author author-info">Thriller</p>
+                                    <p id="theloaim2" class="author author-info"></p>
                                 </li>
                                 <li class="right-list">
                                     <p class="views views-info"></p>
@@ -319,7 +324,157 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                         </div>
                     </div>
-                    {% endfor %}
+                    
+                    <div class="col-md-2 resent-grid recommended-grid">
+                        <div class="resent-grid-img recommended-grid-img">
+                            <a href=""><img id="imgm" src="{% static 'Scripts/images/escapefromnewyork.jpg' %}" alt="" /></a>
+                            <div class="time small-time">
+                                <p></p>
+                            </div>
+                            <div class="clck small-clck">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="resent-grid-info recommended-grid-info video-info-grid">
+                            <h5><p class="title" id="titlem">Escape From New York</p></h5>
+                            <form action="{% url 'single' %}" method="POST">
+                                {% csrf_token %}
+                                <input type = "hidden" value="1103" id="mid" name="mid"/>
+                                <button type="sumit" name="single">View</button>
+                            </form>
+                            <ul>
+                                <li>
+                                    <p id="theloaim" class="author author-info">Action</p>
+                                    <p id="theloaim1" class="author author-info">Adventure</p>
+                                    <p id="theloaim2" class="author author-info">Thriller</p>
+                                </li>
+                                <li class="right-list">
+                                    <p class="views views-info"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 resent-grid recommended-grid">
+                        <div class="resent-grid-img recommended-grid-img">
+                            <a href=""><img id="imgm" src="{% static 'Scripts/images/Ongoldenppond.jpg' %}" alt="" /></a>
+                            <div class="time small-time">
+                                <p></p>
+                            </div>
+                            <div class="clck small-clck">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="resent-grid-info recommended-grid-info video-info-grid">
+                            <h5><p class="title" id="titlem">On Golden pond</p></h5>
+                            <form action="{% url 'single' %}" method="POST">
+                                {% csrf_token %}
+                                <input type = "hidden" value="11816" id="mid" name="mid"/>
+                                <button type="sumit" name="single">View</button>
+                            </form>
+                            <ul>
+                                <li>
+                                    <p id="theloaim" class="author author-info">Drama</p>
+                                    <p id="theloaim1" class="author author-info"></p>
+                                    <p id="theloaim2" class="author author-info"></p>
+                                </li>
+                                <li class="right-list">
+                                    <p class="views views-info"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 resent-grid recommended-grid">
+                        <div class="resent-grid-img recommended-grid-img">
+                            <a href=""><img id="imgm" src="{% static 'Scripts/images/polookaville.jpg' %}" alt="" /></a>
+                            <div class="time small-time">
+                                <p></p>
+                            </div>
+                            <div class="clck small-clck">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="resent-grid-info recommended-grid-info video-info-grid">
+                            <h5><p class="title" id="titlem">Palookaville</p></h5>
+                            <form action="{% url 'single' %}" method="POST">
+                                {% csrf_token %}
+                                <input type = "hidden" value="37616" id="mid" name="mid"/>
+                                <button type="sumit" name="single">View</button>
+                            </form>
+                            <ul>
+                                <li>
+                                    <p id="theloaim" class="author author-info">Drama</p>
+                                    <p id="theloaim1" class="author author-info">Action</p>
+                                    <p id="theloaim2" class="author author-info"></p>
+                                </li>
+                                <li class="right-list">
+                                    <p class="views views-info"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 resent-grid recommended-grid">
+                        <div class="resent-grid-img recommended-grid-img">
+                            <a href=""><img id="imgm" src="{% static 'Scripts/images/childrenofthecorn.jpg' %}" alt="" /></a>
+                            <div class="time small-time">
+                                <p></p>
+                            </div>
+                            <div class="clck small-clck">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="resent-grid-info recommended-grid-info video-info-grid">
+                            <h5><p class="title" id="titlem">Children Of The Corn</p></h5>
+                            <form action="{% url 'single' %}" method="POST">
+                                {% csrf_token %}
+                                <input type = "hidden" value="25750" id="mid" name="mid"/>
+                                <button type="sumit" name="single">View</button>
+                            </form>
+                            <ul>
+                                <li>
+                                    <p id="theloaim" class="author author-info">Horror</p>
+                                    <p id="theloaim1" class="author author-info">Thriller</p>
+                                    <p id="theloaim2" class="author author-info"></p>
+                                </li>
+                                <li class="right-list">
+                                    <p class="views views-info"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 resent-grid recommended-grid">
+                        <div class="resent-grid-img recommended-grid-img">
+                            <a href=""><img id="imgm" src="{% static 'Scripts/images/rebelwithoutacause.jpg' %}" alt="" /></a>
+                            <div class="time small-time">
+                                <p></p>
+                            </div>
+                            <div class="clck small-clck">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="resent-grid-info recommended-grid-info video-info-grid">
+                            <h5><p class="title" id="titlem">Rebel Without a Cause</p></h5>
+                            <form action="{% url 'single' %}" method="POST">
+                                {% csrf_token %}
+                                <input type = "hidden" value="221" id="mid" name="mid"/>
+                                <button type="sumit" name="single">View</button>
+                            </form>
+                            <ul>
+                                <li>
+                                    <p id="theloaim" class="author author-info">Drama</p>
+                                    <p id="theloaim1" class="author author-info"></p>
+                                    <p id="theloaim2" class="author author-info"></p>
+                                </li>
+                                <li class="right-list">
+                                    <p class="views views-info"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
 					<div class="clearfix"> </div>
 				</div>
 
@@ -336,7 +491,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     {% for item in length %}
                         <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href="single.html"><img id="img{{item}}" src="" alt="" /></a>
+                            <a href=""><img id="img{{item}}" src="" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -346,6 +501,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <div class="resent-grid-info recommended-grid-info video-info-grid">
                             <h5><p class="title" id="title{{item}}">Title</p></h5>
+                            <form action="{% url 'single' %}" method="POST">
+                                {% csrf_token %}
+                                <input type = "hidden" value="" id="mid{{item}}" name="mid"/>
+                                <button type="sumit" name="single">View</button>
+                            </form>
                             <ul>
                                 <li>
                                     <p id="theloai{{item}}" class="author author-info"></p>
@@ -738,28 +898,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 var index = 0;
                 var indexm = 0;
                 console.log(movieIds);
+                
                 $(document).ready(function () {
-                    for(i = 0; i < {{lengthMostPopular}}; i++)
+                    for(j = 0; j < movieIds.length; j++)
                     {
-                        console.log("mostpopular")
-                        var settings1 = {
-                        "async": true,
-                        "crossDomain": true,
-                        "url": "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&a?api_key=3fae97dd48b9aa091688c08d994c23f1&language=en-US",
-                        "method": "GET",
-                        "headers": {},
-                        "data": "{}"
-                        }
-                        $.ajax(settings1).done(function (response) {
-                        console.log(response);
-                        document.getElementById('imgm'+(indexm)).src = 'https://image.tmdb.org/t/p/w500' + response.backdrop_path;
-                                document.getElementById("titlem"+(indexm)).innerHTML = response.title;
-                                document.getElementById("theloaim"+(indexm)).innerHTML = response.genres[0].name;
-                                document.getElementById("theloaim1"+(indexm)).innerHTML = response.genres[1].name;
-                                document.getElementById("theloaim2"+(indexm)).innerHTML = response.genres[2].name;
-                        });
-
+                        $('#mid'+(j+1)).val(movieIds[j]);    
                     }
+
+                    
                     var requests = [];
                     for (i = 0; i < movieIds.length; i++) {
                         var settings = {

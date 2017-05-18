@@ -306,7 +306,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="clearfix"> </div>
 					<div class="published">
-						<script src="{% static 'Scripts/jquery.min.js' %}"></script>
+						<script src="{% static 'Scripts/js/jquery-1.11.1.min.js' %}"></script>
 							<script>
 								$(document).ready(function () {
 									size_li = $("#myList li").size();
@@ -323,14 +323,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								});
 							</script>
 							<div class="load_more">	
+								<h3>Rate:</h3>
+								<form action="{% url 'rate' %}" method="POST">
+									{% csrf_token %}
+									<!--<button type="submit"/> Great</button>-->
+									<input type="radio" name="rate"  value="5" /> &nbsp;Greate&nbsp;
+								
+
+								
+									<!--<button type="submit"/> Very Good</button>-->
+									<input type="radio" name="rate"  value="4" />&nbsp; Very Good&nbsp;
+								
+
+								
+									<!--<button type="submit"/>Good </button>-->
+									<input type="radio" name="rate"  value="3" />&nbsp; Good&nbsp;
+								
+
+								
+									<!--<button type="submit"/> Bad</button>-->
+									<input type="radio" name="rate"  value="2" />&nbsp; Bad&nbsp;
+								
+									
+									<input type="radio" name="rate"  value="1" />&nbsp; Very &nbsp;
+									<br>
+									<button type="submit">Rate</button>
+								</form>
 								<ul id="myList">
 									<li>
-										
+										<h3>Genres:</h3>
 										<p id = "theloai1"></p>
-									</li>
-									<li>
 										<p id="theloai2"></p>
 										<p id="theloai3"></p>
+									</li>
+									<li>
+										
 										<!--<p>Nullam fringilla sagittis tortor ut rhoncus. Nam vel ultricies erat, vel sodales leo. Maecenas pellentesque, est suscipit laoreet tincidunt, ipsum tortor vestibulum leo, ac dignissim diam velit id tellus. Morbi luctus velit quis semper egestas. Nam condimentum sem eget ex iaculis bibendum. Nam tortor felis, commodo faucibus sollicitudin ac, luctus a turpis. Donec congue pretium nisl, sed fringilla tellus tempus in.</p>-->
 										<div class="load-grids">
 											<div class="load-grid">
@@ -716,7 +743,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </html>
 <script type="text/javascript">
    	var movieId = {{movieId}};
-    var settings = {
+$(document).ready(function(){
+	var settings = {
         "async": true,
          "crossDomain": true,
           "url": "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=3fae97dd48b9aa091688c08d994c23f1&language=en-US",
@@ -727,10 +755,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	$.ajax(settings).done(function (response) {
 		console.log(response);
-		document.getElementById('img'.src = 'https://image.tmdb.org/t/p/w500' + response.backdrop_path;
+		document.getElementById('img').src = 'https://image.tmdb.org/t/p/w500' + response.backdrop_path;
         document.getElementById("title").innerHTML = response.title;
         document.getElementById("theloai1").innerHTML = response.genres[0].name;
-        document.getElementById("theloai2"+(index)).innerHTML = response.genres[1].name;
-        document.getElementById("theloai3"+(index)).innerHTML = response.genres[2].name;
+        document.getElementById("theloai2").innerHTML = response.genres[1].name;
+        document.getElementById("theloai3").innerHTML = response.genres[2].name;
 	});
+});
+    
 </script>

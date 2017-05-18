@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^recommend$', views.recommend, name='recommend'),
     url(r'^search/', views.search, name = 'search'),
     url(r'^signout$', views.signout, name = 'signout'),
-    url(r'^single/', views.single, name = 'single')
+    url(r'^single/', views.single, name = 'single'),
+    url(r'^rate', views.rate, name = 'rate')
 ]

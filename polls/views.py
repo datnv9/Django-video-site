@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.http import HttpRequest
+from django.http import HttpResponseRedirect
 import urllib2
 import predictionio
 import json
@@ -28,9 +29,10 @@ def ReadFileDat(fileName, search):
     
 
 def index(request):
-    if 'user' not in request.session:
-        return HttpResponseRedirect('/polls/signin');
-    user = request.session['user']
+    #if 'user' not in request.session:
+        #return HttpResponseRedirect('/polls/signin')
+       # return HttpResponseRedirect('/polls')
+    #user = request.session['user']
     search = ""
     m = []
     if request.method == 'POST':
@@ -75,14 +77,15 @@ def signin(request):
     for item in range(1,mostpopular+1):
         lengthMostPopular.append(item)
 
-    length = 36
+    length = 12
     if request.method == 'POST':
         userName = request.POST['username']
         request.session['user'] = userName
-    handle = open(userName,"r+")
-    
-    
-    
+        #handle = open(userName,"r+")
+        #Write file users
+        with open("users.txt", "a") as myfile:
+            myfile.write(userName + '\n')
+
     engine_client = predictionio.EngineClient(url="http://localhost:8000")
     r = engine_client.send_query({"user": userName, "num": length})
     m = json.dumps(r)
@@ -118,7 +121,21 @@ def signout(request):
 
 def single(request):
     if request.method == 'POST':
-        newuser = request.POST['newuser']
-        print "newuser:" + newuser + "\n"
+        mid = request.POST['mid']
+        request.session['mid'] = mid
+        print "mid:" + mid + "\n"
 
-    return render(request, "single.html")
+    return render(request, "single.html", {'movieId':mid})
+
+
+def rate(request):
+    print 'rate'
+
+    print request.session['mid']
+    if request.method == 'POST':
+        print "da nhan request"
+        rate = request.POST['rate']
+        print rate
+    #rate = filter(None,rate)
+    print rate    
+    return render(request, "single.html", {'movieId':request.session['mid']})
