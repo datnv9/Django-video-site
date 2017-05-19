@@ -131,13 +131,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <form action="{% url 'single' %}" method="POST">
                                 {% csrf_token %}
                                 <input type = "hidden" value="9946" id="mid" name="mid"/>
+                                <input type = "hidden" value="9946" id="mid" name="mid"/>
                                 <button type="sumit" name="single">View</button>
                             </form>
                             <ul>
                                 <li>
-                                    <p id="theloaim" class="author author-info">Action</p>
-                                    <p id="theloaim1" class="author author-info">Thriller</p>
-                                    <p id="theloaim2" class="author author-info"></p>
+                                    <a id="theloaim" class="author author-info">Action</a>
+                                    <a id="theloaim1" class="author author-info">Thriller</a>
+                                    <a id="theloaim2" class="author author-info"></a>
                                 </li>
                                 <li class="right-list">
                                     <p class="views views-info"></p>
@@ -165,9 +166,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </form>
                             <ul>
                                 <li>
-                                    <p id="theloaim" class="author author-info">Action</p>
-                                    <p id="theloaim1" class="author author-info">Adventure</p>
-                                    <p id="theloaim2" class="author author-info">Thriller</p>
+                                    <a id="theloaim" class="author author-info">Action</a>
+                                    <a id="theloaim1" class="author author-info">Adventure</a>
+                                    <a id="theloaim2" class="author author-info">Thriller</a>
                                 </li>
                                 <li class="right-list">
                                     <p class="views views-info"></p>
@@ -195,7 +196,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </form>
                             <ul>
                                 <li>
-                                    <p id="theloaim" class="author author-info">Drama</p>
+                                    <a id="theloaim" class="author author-info">Drama</a>
                                     <p id="theloaim1" class="author author-info"></p>
                                     <p id="theloaim2" class="author author-info"></p>
                                 </li>
@@ -225,8 +226,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </form>
                             <ul>
                                 <li>
-                                    <p id="theloaim" class="author author-info">Drama</p>
-                                    <p id="theloaim1" class="author author-info">Action</p>
+                                    <a id="theloaim" class="author author-info">Drama</a>
+                                    <a id="theloaim1" class="author author-info">Action</a>
                                     <p id="theloaim2" class="author author-info"></p>
                                 </li>
                                 <li class="right-list">
@@ -255,8 +256,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </form>
                             <ul>
                                 <li>
-                                    <p id="theloaim" class="author author-info">Horror</p>
-                                    <p id="theloaim1" class="author author-info">Thriller</p>
+                                    <a id="theloaim" class="author author-info">Horror</a>
+                                    <a id="theloaim1" class="author author-info">Thriller</a>
                                     <p id="theloaim2" class="author author-info"></p>
                                 </li>
                                 <li class="right-list">
@@ -285,7 +286,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </form>
                             <ul>
                                 <li>
-                                    <p id="theloaim" class="author author-info">Drama</p>
+                                    <a id="theloaim" class="author author-info">Drama</a>
                                     <p id="theloaim1" class="author author-info"></p>
                                     <p id="theloaim2" class="author author-info"></p>
                                 </li>
@@ -329,9 +330,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </form>
                             <ul>
                                 <li>
-                                    <p id="theloai{{item}}" class="author author-info"></p>
-                                    <p id="theloai1{{item}}" class="author author-info"></p>
-                                    <p id="theloai2{{item}}" class="author author-info"></p>
+                                    <a id="theloai{{item}}" class="author author-info"></a>
+                                    <a id="theloai1{{item}}" class="author author-info"></a>
+                                    <a id="theloai2{{item}}" class="author author-info"></a>
                                 </li>
                                 <li class="right-list">
                                     <p class="views views-info"></p>
@@ -715,6 +716,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </html>
 <script type="text/javascript">
                 var movieIds = {{ movieIds | safe }};
+                var movielensIds = {{ movielensIds | safe }};
                 var movies = [];
                 var index = 0;
                 var indexm = 0;

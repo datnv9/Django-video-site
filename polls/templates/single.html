@@ -50,25 +50,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</form>
 				</div>
 				<div class="header-top-right">
-                    <div class="file">
-                        <form method="GET" action="{% url 'signout' %}">
-                        <a href="{% url 'signout' %}">Log Out</a>
-                        </form>
-                    </div>
-                    <div class="signin">
-                        <!--<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">Sign Up</a>-->
-                        <!-- pop-up-box -->
-                        <script type="text/javascript" src="{% static 'Scripts/js/modernizr.custom.min.js' %}"></script>
-                        <link href="{% static 'Scripts/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
-                        <script src="{% static 'Scripts/js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
-                        <!--//pop-up-box -->
-                    </div>
-                    <div class="signin">
-                        <!--<a href="index.html" class="play-icon popup-with-zoom-anim">Log out</a>-->
-                        
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
+					<div class="file">
+						<form method="GET" action="{% url 'signout' %}">
+							<a href="{% url 'signout' %}">Log Out</a>
+						</form>
+					</div>
+					<div class="signin">
+						<!--<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">Sign Up</a>-->
+						<!-- pop-up-box -->
+						<script type="text/javascript" src="{% static 'Scripts/js/modernizr.custom.min.js' %}"></script>
+						<link href="{% static 'Scripts/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
+						<script src="{% static 'Scripts/js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
+						<!--//pop-up-box -->
+					</div>
+					<div class="signin">
+						<!--<a href="index.html" class="play-icon popup-with-zoom-anim">Log out</a>-->
+
+					</div>
+					<div class="clearfix"> </div>
+				</div>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -84,18 +84,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="drop-navigation drop-navigation">
 			<ul class="nav nav-sidebar">
 				<li><a href="/polls/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-			
+
 				<li><a href="/polls/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>History</a></li>
 				<li><a href="/polls/recommend" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>Recommended<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
-				
+
 			</ul>
 			<!-- script-for-menu -->
 			<script>
-					$(".top-navigation").click(function () {
-						$(".drop-navigation").slideToggle(300, function () {
-							// Animation complete.
-						});
+				$(".top-navigation").click(function () {
+					$(".drop-navigation").slideToggle(300, function () {
+						// Animation complete.
 					});
+				});
 			</script>
 			<div class="side-bottom">
 				<div class="side-bottom-icons">
@@ -167,16 +167,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<input type="radio" name="rate" value="2" />&nbsp; Bad&nbsp;
 
 
-							<input type="radio" name="rate" value="1" />&nbsp; Very &nbsp;
+							<input type="radio" name="rate" value="1" />&nbsp; Very Bad &nbsp;
 							<br>
 							<button type="submit">Rate</button>
 						</form>
 						<ul id="myList">
 							<li>
 								<h3>Genres:</h3>
-								<p id="theloai1"></p>
-								<p id="theloai2"></p>
-								<p id="theloai3"></p>
+								<a id="theloai1"></a>
+								<a id="theloai2"></a>
+								<a id="theloai3"></a>
 							</li>
 							<li>
 
