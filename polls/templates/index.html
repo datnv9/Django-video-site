@@ -49,8 +49,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="top-search">
-				<form action="{% url 'search' %}" method="post" class="navbar-form navbar-right">
-					{% csrf_token %}
+				<form action="{% url 'search' %}" method="get" class="navbar-form navbar-right">
+					<!--{% csrf_token %}-->
 					<input name = "search" search type="text" class="form-control" placeholder="Search...">
 					<input type="submit" value=" ">
 				</form>
@@ -62,7 +62,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </form>
                     </div>
                     <div class="signin">
-                        <!--<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">Sign Up</a>-->
+                        <form method="GET" action="{% url 'signout' %}">
+                        <a href="{% url 'signout' %}">Sign Up</a>
+                        <a href="{% url 'signout' %}">Sign In</a>
+                        </form>
                         <!-- pop-up-box -->
                         <script type="text/javascript" src="{% static 'Scripts/js/modernizr.custom.min.js' %}"></script>
                         <link href="{% static 'Scripts/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
@@ -91,7 +94,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="drop-navigation drop-navigation">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/polls" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-                <li><a href="/polls/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>History</a></li>
+                <!--<li><a href="/polls/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>History</a></li>-->
                 <li><a href="/polls/recommend" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>Recommended<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
                 
             <div class="side-bottom">
@@ -128,8 +131,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <div class="resent-grid-info recommended-grid-info video-info-grid">
                             <h5><p class="title" id="titlem">End Of Days</p></h5>
-                            <form action="{% url 'single' %}" method="POST">
-                                {% csrf_token %}
+                            <form action="{% url 'single' %}" method="GET">
+                                <!--{% csrf_token %}-->
                                 <input type = "hidden" value="9946" id="mid" name="mid"/>
                                 <input type = "hidden" value="9946" id="mid" name="mid"/>
                                 <button type="sumit" name="single">View</button>
@@ -765,4 +768,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     // console.log("movies: " + movies)
                 });
 
+</script>
+
+<script>
+    data = {'user': '1', 'num' : 4};
+    $.ajax({
+        url: 'http://localhost:8082/queries.json',
+        type: 'POST',
+        data: JSON.stringify(data),
+        header: {
+            'Content-Type': 'application/json'
+        },
+        complete: function(response){
+            console.log(response.responseText);
+        }
+    });
 </script>

@@ -95,7 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="drop-navigation drop-navigation">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/polls/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-                <li><a href="/polls/history/" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>History</a></li>
+                <!--<li><a href="/polls/history/" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>History</a></li>-->
                 <li><a href="/polls/recommend/" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>Recommended<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
 
             </ul>
@@ -138,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     {% for item in length %}
                     <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href="single.html"><img id="img{{item}}" src="" alt="" /></a>
+                            <a href=""><img id="img{{item}}" src="" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -150,8 +150,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <h5>
                                 <p class="title" id="title{{item}}">Title</p>
                             </h5>
-                            <form action="{% url 'single' %}" method="POST">
-                                {% csrf_token %}
+                            <form action="{% url 'single' %}" method="GET">
+                                <!--{% csrf_token %}-->
                                 <input type="hidden" value="" id="mid{{item}}" name="mid" />
                                 <button type="sumit" name="single">View</button>
                             </form>

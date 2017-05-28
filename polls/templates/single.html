@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul class="nav nav-sidebar">
 				<li><a href="/polls/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
 
-				<li><a href="/polls/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>History</a></li>
+				<!--<li><a href="/polls/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>History</a></li>-->
 				<li><a href="/polls/recommend" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>Recommended<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
 
 			</ul>
@@ -149,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<form action="{% url 'rate' %}" method="POST">
 							{% csrf_token %}
 							<!--<button type="submit"/> Great</button>-->
-							<input type="radio" name="rate" value="5" /> &nbsp;Greate&nbsp;
+							<input type="radio" name="rate" value="5" checked=true"/> &nbsp;Greate&nbsp;
 
 
 
@@ -540,7 +540,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<option value="">Safety On</option>
 								</select>
 						</li>
-						<li><a href="history.html" class="f-history">History</a></li>
+						<!--<li><a href="history.html" class="f-history">History</a></li>-->
 						<li><a href="#small-dialog5" class="play-icon popup-with-zoom-anim f-history f-help">Help</a></li>
 					</ul>
 				</div>

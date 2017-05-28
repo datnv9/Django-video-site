@@ -63,9 +63,9 @@ def index(request):
     for item in range(1,len(movieIds)+1):
         loops.append(item)
     return render(request, 'index.html', {'movieIds':json.dumps(movieIds), 'movielensIds': json.dumps(movielensIds), 'length':loops, 'lengthMostPopular':lengthMostPopular})
-    # if search in "1::Toy Story (1995)::Animation|Children's|Comedy":
-    #     print "co roi ne"
-    
+    if search in "1::Toy Story (1995)::Animation|Children's|Comedy":
+        print "co roi ne"
+    return render(request, 'index.html')
 
 def signin(request):
     if 'user' in request.session:
@@ -100,8 +100,12 @@ def recommend(request):
                 reader = csv.reader(file) 
                 for row in reader:
                     if row[0] == item['item']:
-                        movieIds.append(row[2])
-                        movielensIds.append(row[0])
+                        with open("backlist.dat") as fileb:
+                            bls = file.readlines()
+                            for bl in bls:
+                                if bl != row[0]:
+                                    movieIds.append(row[2])
+                                    movielensIds.append(row[0])
         loops =[]
         for item in range(1,len(movieIds)+1):
             loops.append(item)
@@ -113,8 +117,8 @@ def search(request):
     movieIds = []
     movielensIds = []
     loops = []
-    if request.method == 'POST':
-        search = request.POST['search']
+    if request.method == 'GET':
+        search = request.GET['search']
         print "search:" + search
         fileDat = open("movies.dat","r")
         lines = fileDat.readlines()
@@ -148,8 +152,10 @@ def signout(request):
         return HttpResponseRedirect('/polls/signin')
 
 def single(request):
-    if request.method == 'POST':
-        mid = request.POST['mid']
+    if request.method == 'GET':
+        mid = request.GET['mid']
+        print "mid: " + mid
+            
         request.session['mid'] = mid
 
         item = 0
@@ -188,6 +194,11 @@ def rate(request):
         print "da nhan request"
         rate = request.POST['rate']
         mid = request.session['mid']
+        #blackListFile = open("blacklist.dat","a")
+        
+        #lines = blackListFile.readlines()
+        #for it in lines:
+
         item = 0
 
         with open('links.csv') as file:
@@ -195,6 +206,10 @@ def rate(request):
             for row in reader:
                 if row[2] == mid:
                     item = row[0]
+                    with open("backlist.dat", 'a') as file:
+                        file.write(item + '\n')
+                    break
+
         client = predictionio.EventClient(
             access_key="9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O",
             url="http://localhost:7070",
