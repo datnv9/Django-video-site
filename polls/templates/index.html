@@ -121,7 +121,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					
                         <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href=""><img id="imgm" src="{% static 'Scripts/images/endofdays.jpg' %}" alt="" /></a>
+                            <a href="single/?mid=9946&mid=9946&single="><img id="imgm" src="{% static 'Scripts/images/endofdays.jpg' %}" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -152,7 +152,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     
                     <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href=""><img id="imgm" src="{% static 'Scripts/images/escapefromnewyork.jpg' %}" alt="" /></a>
+                            <a href="single/?mid=1103&single="><img id="imgm" src="{% static 'Scripts/images/escapefromnewyork.jpg' %}" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -182,7 +182,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href=""><img id="imgm" src="{% static 'Scripts/images/Ongoldenppond.jpg' %}" alt="" /></a>
+                            <a href="single/?mid=11816&single="><img id="imgm" src="{% static 'Scripts/images/Ongoldenppond.jpg' %}" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -212,7 +212,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href=""><img id="imgm" src="{% static 'Scripts/images/polookaville.jpg' %}" alt="" /></a>
+                            <a href="single/?mid=37616&single="><img id="imgm" src="{% static 'Scripts/images/polookaville.jpg' %}" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -242,7 +242,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href=""><img id="imgm" src="{% static 'Scripts/images/childrenofthecorn.jpg' %}" alt="" /></a>
+                            <a href="ingle/?mid=25750&single="><img id="imgm" src="{% static 'Scripts/images/childrenofthecorn.jpg' %}" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -272,7 +272,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href=""><img id="imgm" src="{% static 'Scripts/images/rebelwithoutacause.jpg' %}" alt="" /></a>
+                            <a href="single/?mid=221&single="><img id="imgm" src="{% static 'Scripts/images/rebelwithoutacause.jpg' %}" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -316,7 +316,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     {% for item in length %}
                         <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href=""><img id="img{{item}}" src="" alt="" /></a>
+                            <a href="" id="link{{item}}"><img id="img{{item}}" src="" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -432,7 +432,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 console.log(response);
                                 movies.push(response);
                                 $('#mid'+(index)).val(response.id);
-                                $('#btnView'+(index)).attr('name',response.id);  
+                                $('#btnView'+(index)).attr('name',response.id);
+                                $('#link'+index).attr('href','single/?mid='+response.id+'&single=');
                                 document.getElementById('img'+(index)).src = 'https://image.tmdb.org/t/p/w500' + response.backdrop_path;
                                 document.getElementById("title"+(index)).innerHTML = response.title;
                                 document.getElementById("theloai"+(index)).innerHTML = response.genres[0].name;
