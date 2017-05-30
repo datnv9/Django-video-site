@@ -25,7 +25,7 @@ SECRET_KEY = ')k6@ioj+qa2uxto#z%%zlyiovj-47jbq5)@3*h-j__3e)zmm67'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','0.0.0.0','localhost','[::1]','10.8.0.6']
 
 
 # Application definition
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'movielens',
+        'USER': 'djsite1',
+        'PASSWORD': 'abc321',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 

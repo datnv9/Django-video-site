@@ -6,6 +6,8 @@ import urllib2
 import predictionio
 import json
 import csv
+import os.path
+
 
 def ReadFileDat(fileName, search):
     movieIds = []
@@ -33,34 +35,64 @@ def index(request):
         return HttpResponseRedirect('/polls/signout')
        #return HttpResponseRedirect('/polls')
     user = request.session['user']
-    print user
+    #print user
 
     mostpopular = 12
     lengthMostPopular = []
     for item in range(1,mostpopular+1):
         lengthMostPopular.append(item)
 
-    length = 12
+    length = 36
 
     engine_client = predictionio.EngineClient(url="http://localhost:8000")
-    r = engine_client.send_query({"user": user, "num": length})
+    r = engine_client.send_query({"user": user, "num": length, "blackList": request.session['blacklist']})
     m = json.dumps(r)
     js = json.loads(m)
     loops = []
     #for index in range(0:3):
     movieIds = []
     movielensIds = []
+    
+    #Write file Watched
+    user = request.session['user']
+    print user
+    # if request.session['mid'] is not None:
+    #     watchedFilm = request.session['mid']
+    #     print watchedFilm
+    #     watchedFile = open(user+'watched.txt','a')
+    #     print "da ghi"
+    #     watchedFile.write(watchedFilm)
+    #     watchedFile.write('\n')
+    #     watchedFile.close()
+
+    movies = []
+    movies.append('0')
+    #Read file Watched
+
     #Read file csv
-        
+    check = 1    
     for item in js['itemScores']:
-        print item
+        #print item
         with open('links.csv') as file:
             reader = csv.reader(file) 
             for row in reader:
                 if row[0] == item['item']:
                     movieIds.append(row[2])
                     movielensIds.append(row[0])
-    for item in range(1,len(movieIds)+1):
+    print movieIds
+    #Remove duplicate of moviewIds                       
+    # newlistMoviewIds = []                        
+    # for i in movieIds:
+    #     if i not in movies:
+    #         newlistMoviewIds.append(i)
+    # print newlistMoviewIds
+    #Remove duplicate of movielensIds
+    # newlistMovieLensIds = []                        
+    # for i in movieIds:
+    #     if i not in newlistMovieLensIds:
+    #         newlistMovieLensIds.append(i)
+            
+    for item in range(1,13):
         loops.append(item)
     return render(request, 'index.html', {'movieIds':json.dumps(movieIds), 'movielensIds': json.dumps(movielensIds), 'length':loops, 'lengthMostPopular':lengthMostPopular})
     if search in "1::Toy Story (1995)::Animation|Children's|Comedy":
@@ -75,8 +107,13 @@ def signin(request):
         request.session['user'] = userName
         #handle = open(userName,"r+")
         #Write file users
-        with open("users.txt", "a") as myfile:
-            myfile.write(userName + '\n')
+        fileName = ""+ userName + ".txt"
+        blacklist = []
+        if os.path.isfile(fileName):
+            with open(fileName, "r") as myfile:
+                for line in myfile:
+                    blacklist.append(line)
+        request.session['blacklist'] = blacklist
         return HttpResponseRedirect('/polls/')
     else:
         return render(request, 'signin.html')
@@ -86,24 +123,24 @@ def signin(request):
 def recommend(request):
     if 'user' in request.session:
         user = request.session['user']
-        length = 12
+        length = 38
         engine_client = predictionio.EngineClient(url="http://localhost:8000")
-        r = engine_client.send_query({"user": user, "num": length})
+        r = engine_client.send_query({"user": user, "num": length, "blackList": request.session['blacklist']})
         m = json.dumps(r)
         js = json.loads(m)
         movieIds = []
         movielensIds = []
         #Read file csv
         for item in js['itemScores']:
-            print item
+            #print "item:" + item
             with open('links.csv') as file:
                 reader = csv.reader(file) 
                 for row in reader:
                     if row[0] == item['item']:
-                        with open("backlist.dat") as fileb:
-                            bls = file.readlines()
-                            for bl in bls:
-                                if bl != row[0]:
+                        # with open("backlist.dat") as fileb:
+                        #     bls = file.readlines()
+                        #     for bl in bls:
+                        #         if bl != row[0]:
                                     movieIds.append(row[2])
                                     movielensIds.append(row[0])
         loops =[]
@@ -154,6 +191,7 @@ def signout(request):
 def single(request):
     if request.method == 'GET':
         mid = request.GET['mid']
+        request.session['mid'] = mid
         print "mid: " + mid
             
         request.session['mid'] = mid
@@ -206,7 +244,10 @@ def rate(request):
             for row in reader:
                 if row[2] == mid:
                     item = row[0]
-                    with open("backlist.dat", 'a') as file:
+                    blacklist = request.session['blacklist']
+                    blacklist.append(item)
+                    request.session['blacklist']=blacklist
+                    with open(user+".txt", 'a') as file:
                         file.write(item + '\n')
                     break
 
