@@ -80,7 +80,11 @@ def index(request):
     #Read file csv
     if js: 
         for item in js['itemScores']:
+<<<<<<< HEAD
             #print item
+=======
+            print "item: ", item['item'], "\t score:", item['score']
+>>>>>>> bc9aacd4478ac23e52db1b5e2b759fd77c5d44e6
             with open('links.csv') as file:
                 reader = csv.reader(file) 
                 for row in reader:
@@ -102,10 +106,7 @@ def index(request):
             
     for item in range(1,13):
         loops.append(item)
-    return render(request, 'index.html', {'movieIds':json.dumps(movieIds), 'movielensIds': json.dumps(movielensIds), 'length':loops, 'lengthMostPopular':lengthMostPopular})
-    if search in "1::Toy Story (1995)::Animation|Children's|Comedy":
-        print "co roi ne"
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'movieIds':json.dumps(movieIds), 'movielensIds': json.dumps(movielensIds), 'length':loops, 'lengthMostPopular':lengthMostPopular, 'user':user})
 
 def signin(request):
     if 'user' in request.session:
@@ -149,7 +150,11 @@ def recommend(request):
         #Read file csv
         if js:
             for item in js['itemScores']:
+<<<<<<< HEAD
                 #print "item:" + item
+=======
+                print "item: ", item['item'], "\t score: ", item['score']
+>>>>>>> bc9aacd4478ac23e52db1b5e2b759fd77c5d44e6
                 with open('links.csv') as file:
                     reader = csv.reader(file) 
                     for row in reader:
@@ -163,7 +168,7 @@ def recommend(request):
         loops =[]
         for item in range(1,len(movieIds)+1):
             loops.append(item)
-        return render(request, 'recommend.html',{'movieIds':json.dumps(movieIds), 'length': loops, 'movielensIds': json.dumps(movielensIds)})
+        return render(request, 'recommend.html',{'movieIds':json.dumps(movieIds), 'length': loops, 'movielensIds': json.dumps(movielensIds), 'user':user})
 
 def search(request):
     search = ""
@@ -172,6 +177,7 @@ def search(request):
     movielensIds = []
     loops = []
     if request.method == 'GET':
+        user = request.session['user']
         search = request.GET['search']
         print "search:" + search
         fileDat = open("movies.dat","r")
@@ -196,7 +202,7 @@ def search(request):
             print item
             print len(movieIds)
             loops.append(item)
-    return render(request, 'search.html', {'movieIds':json.dumps(movieIds), 'length':loops, 'movielensIds': json.dumps(movielensIds)})
+    return render(request, 'search.html', {'movieIds':json.dumps(movieIds), 'length':loops, 'movielensIds': json.dumps(movielensIds),'user':user})
 
 def signout(request):
     print "signout"
@@ -252,7 +258,7 @@ def single(request):
                 target_entity_id=item
             )
 
-    return render(request, "single.html", {'movieId':mid, 'rating':float(rating)})
+    return render(request, "single.html", {'movieId':mid, 'rating':float(rating),'user':user})
 
 
 def rate(request):

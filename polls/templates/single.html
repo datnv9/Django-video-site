@@ -51,7 +51,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</form>
 				</div>
 				<div class="header-top-right">
-					<div class="file">
+ 					<div class="file">
+						<form> 
+							<a>User: {{user}}</a>
+						</form>
+					</div>
+					<div class="signin">
 						<form method="GET" action="{% url 'signout' %}">
 							<a href="{% url 'signout' %}">Log Out</a>
 						</form>
