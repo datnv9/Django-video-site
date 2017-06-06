@@ -87,7 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="drop-navigation drop-navigation">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="/polls/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li><a href="/polls/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
                 <!--<li><a href="/polls/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>History</a></li>-->
                 <li><a href="/polls/recommend" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>Recommended<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
             </ul>
@@ -127,39 +127,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="clearfix"> </div>
                 </div>
                 
-                <div class="recommended-grids">
+                <div class="recommended-grids container-fluid">
+                
+                <div class="row">
                     {% for item in length %}
-                        <div class="col-md-2 resent-grid recommended-grid">
-                        <div class="resent-grid-img recommended-grid-img">
-                            <a href="" id="link{{item}}"><img id="img{{item}}" src="" alt="" /></a>
-                            <div class="time small-time">
-                                <p></p>
+                        <div class="col-md-2 resent-grid recommended-grid box">
+                        
+                            <div class="resent-grid-img recommended-grid-img">
+                                <a href="" id="link{{item}}"><img id="img{{item}}" src="" alt="" /></a>
+                                <div class="time small-time">
+                                    <p></p>
+                                </div>
+                                <div class="clck small-clck">
+                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                </div>
                             </div>
-                            <div class="clck small-clck">
-                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            <div class="resent-grid-info recommended-grid-info video-info-grid">
+                                <h5><p class="title" id="title{{item}}">Title</p></h5>
+                                <form action="{% url 'single' %}" method="GET">
+                                    <!--{% csrf_token %}-->
+                                    <input type = "hidden" value="" id="mid{{item}}" name="mid"/>
+                                    <button type="sumit" name="single">View</button>
+                                </form>
+                                <ul>
+                                    <li>
+                                        <a id="theloai{{item}}" class="author author-info"></a>
+                                        <a id="theloai1{{item}}" class="author author-info"></a>
+                                        <a id="theloai2{{item}}" class="author author-info"></a>
+                                    </li>
+                                    <li class="right-list">
+                                        <p class="views views-info"></p>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="resent-grid-info recommended-grid-info video-info-grid">
-                            <h5><p class="title" id="title{{item}}">Title</p></h5>
-                            <form action="{% url 'single' %}" method="GET">
-                                <!--{% csrf_token %}-->
-                                <input type = "hidden" value="" id="mid{{item}}" name="mid"/>
-                                <button type="sumit" name="single">View</button>
-                            </form>
-                            <ul>
-                                <li>
-                                    <a id="theloai{{item}}" class="author author-info"></a>
-                                    <a id="theloai1{{item}}" class="author author-info"></a>
-                                    <a id="theloai2{{item}}" class="author author-info"></a>
-                                </li>
-                                <li class="right-list">
-                                    <p class="views views-info"></p>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                     {% endfor %}
-                    
+                    </div>
                     <div class="clearfix"> </div>
                 </div>
             </div>
@@ -241,7 +245,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             index++;
                             console.log(response);
                             movies.push(response);
-							$('#link'+index).attr('href','single/?mid='+response.id+'&single=');
+							$('#link'+index).attr('href','/polls/single/?mid='+response.id+'&single=');
                             document.getElementById('img'+(index)).src = 'https://image.tmdb.org/t/p/w500' + response.backdrop_path;
                             document.getElementById("title"+(index)).innerHTML = response.title;
                             document.getElementById("theloai"+(index)).innerHTML = response.genres[0].name;
