@@ -43,9 +43,17 @@ def index(request):
         lengthMostPopular.append(item)
 
     length = 36
-
-    engine_client = predictionio.EngineClient(url="http://localhost:8000")
-    r = engine_client.send_query({"user": user, "num": length, "blackList": request.session['blacklist']})
+    
+    check_api = False
+    try:
+        urllib2.urlopen('http://localhost:8000', timeout=1)
+        check_api = True
+    except urllib2.URLError as err: 
+        check_api = False
+    r = 0
+    if check_api:
+        engine_client = predictionio.EngineClient(url="http://localhost:8000")
+        r = engine_client.send_query({"user": user, "num": length, "blackList": request.session['blacklist']})
     m = json.dumps(r)
     js = json.loads(m)
     loops = []
@@ -70,15 +78,15 @@ def index(request):
     #Read file Watched
 
     #Read file csv
-    check = 1    
-    for item in js['itemScores']:
-        #print item
-        with open('links.csv') as file:
-            reader = csv.reader(file) 
-            for row in reader:
-                if row[0] == item['item']:
-                    movieIds.append(row[2])
-                    movielensIds.append(row[0])
+    if js: 
+        for item in js['itemScores']:
+            print "item: ", item['item'], "\t score:", item['score']
+            with open('links.csv') as file:
+                reader = csv.reader(file) 
+                for row in reader:
+                    if row[0] == item['item']:
+                        movieIds.append(row[2])
+                        movielensIds.append(row[0])
     print movieIds
     #Remove duplicate of moviewIds                       
     # newlistMoviewIds = []                        
@@ -94,10 +102,7 @@ def index(request):
             
     for item in range(1,13):
         loops.append(item)
-    return render(request, 'index.html', {'movieIds':json.dumps(movieIds), 'movielensIds': json.dumps(movielensIds), 'length':loops, 'lengthMostPopular':lengthMostPopular})
-    if search in "1::Toy Story (1995)::Animation|Children's|Comedy":
-        print "co roi ne"
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'movieIds':json.dumps(movieIds), 'movielensIds': json.dumps(movielensIds), 'length':loops, 'lengthMostPopular':lengthMostPopular, 'user':user})
 
 def signin(request):
     if 'user' in request.session:
@@ -118,35 +123,44 @@ def signin(request):
     else:
         return render(request, 'signin.html')
     
-    #return HttpResponse(json.dumps(movieIds))
-    
 def recommend(request):
     if 'user' in request.session:
         user = request.session['user']
         length = 38
-        engine_client = predictionio.EngineClient(url="http://localhost:8000")
-        r = engine_client.send_query({"user": user, "num": length, "blackList": request.session['blacklist']})
+
+        #Recommend Film
+        check_api = False
+        try:
+            urllib2.urlopen('http://localhost:8000', timeout=1)
+            check_api = True
+        except urllib2.URLError as err: 
+            check_api = False
+        r = 0
+        if check_api:
+            engine_client = predictionio.EngineClient(url="http://localhost:8000")
+            r = engine_client.send_query({"user": user, "num": length, "blackList": request.session['blacklist']})
         m = json.dumps(r)
         js = json.loads(m)
         movieIds = []
         movielensIds = []
         #Read file csv
-        for item in js['itemScores']:
-            #print "item:" + item
-            with open('links.csv') as file:
-                reader = csv.reader(file) 
-                for row in reader:
-                    if row[0] == item['item']:
-                        # with open("backlist.dat") as fileb:
-                        #     bls = file.readlines()
-                        #     for bl in bls:
-                        #         if bl != row[0]:
-                                    movieIds.append(row[2])
-                                    movielensIds.append(row[0])
+        if js:
+            for item in js['itemScores']:
+                print "item: ", item['item'], "\t score: ", item['score']
+                with open('links.csv') as file:
+                    reader = csv.reader(file) 
+                    for row in reader:
+                        if row[0] == item['item']:
+                            # with open("backlist.dat") as fileb:
+                            #     bls = file.readlines()
+                            #     for bl in bls:
+                            #         if bl != row[0]:
+                                        movieIds.append(row[2])
+                                        movielensIds.append(row[0])
         loops =[]
         for item in range(1,len(movieIds)+1):
             loops.append(item)
-        return render(request, 'recommend.html',{'movieIds':json.dumps(movieIds), 'length': loops, 'movielensIds': json.dumps(movielensIds)})
+        return render(request, 'recommend.html',{'movieIds':json.dumps(movieIds), 'length': loops, 'movielensIds': json.dumps(movielensIds), 'user':user})
 
 def search(request):
     search = ""
@@ -155,6 +169,7 @@ def search(request):
     movielensIds = []
     loops = []
     if request.method == 'GET':
+        user = request.session['user']
         search = request.GET['search']
         print "search:" + search
         fileDat = open("movies.dat","r")
@@ -179,7 +194,7 @@ def search(request):
             print item
             print len(movieIds)
             loops.append(item)
-    return render(request, 'search.html', {'movieIds':json.dumps(movieIds), 'length':loops, 'movielensIds': json.dumps(movielensIds)})
+    return render(request, 'search.html', {'movieIds':json.dumps(movieIds), 'length':loops, 'movielensIds': json.dumps(movielensIds),'user':user})
 
 def signout(request):
     print "signout"
@@ -197,7 +212,7 @@ def single(request):
         request.session['mid'] = mid
 
         item = 0
-
+        
         with open('links.csv') as file:
             reader = csv.reader(file) 
             for row in reader:
@@ -205,23 +220,37 @@ def single(request):
                     item = row[0]
         
         user = request.session['user']
-        print "mid:" + mid + "\n"
-        print "item:" + item
-        client = predictionio.EventClient(
-            access_key="9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O",
-            url="http://localhost:7070",
-            threads=5,
-            qsize=500
-        )
-        client.create_event(
-            event="buy",
-            entity_type="user",
-            entity_id=user,
-            target_entity_type="item",
-            target_entity_id=item
-        )
+        rating = 0            
+        fileName = ""+ user + ".txt"
+        if os.path.isfile(fileName):
+            with open(fileName, "r") as myfile:
+                reader = csv.reader(myfile)
+                for row in reader:
+                    if row[0] == item:
+                        rating = row[1]
+        check_api = False
+        try:
+            urllib2.urlopen('http://localhost:7070', timeout=1)
+            check_api = True
+        except urllib2.URLError as err: 
+            check_api = False
+        r = 0
+        if check_api:
+            client = predictionio.EventClient(
+                access_key="9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O",
+                url="http://localhost:7070",
+                threads=5,
+                qsize=500
+            )
+            client.create_event(
+                event="buy",
+                entity_type="user",
+                entity_id=user,
+                target_entity_type="item",
+                target_entity_id=item
+            )
 
-    return render(request, "single.html", {'movieId':mid})
+    return render(request, "single.html", {'movieId':mid, 'rating':float(rating),'user':user})
 
 
 def rate(request):
@@ -229,16 +258,9 @@ def rate(request):
     print request.session['mid']
     if request.method == 'POST':
         user = request.session['user']
-        print "da nhan request"
         rate = request.POST['rate']
         mid = request.session['mid']
-        #blackListFile = open("blacklist.dat","a")
-        
-        #lines = blackListFile.readlines()
-        #for it in lines:
-
         item = 0
-
         with open('links.csv') as file:
             reader = csv.reader(file) 
             for row in reader:
@@ -248,23 +270,29 @@ def rate(request):
                     blacklist.append(item)
                     request.session['blacklist']=blacklist
                     with open(user+".txt", 'a') as file:
-                        file.write(item + '\n')
+                        file.write(item +','+rate+'\n')
                     break
-
-        client = predictionio.EventClient(
-            access_key="9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O",
-            url="http://localhost:7070",
-            threads=5,
-            qsize=500
-        )
-        client.create_event(
-            event="rate",
-            entity_type="user",
-            entity_id=user,
-            target_entity_type="item",
-            target_entity_id=item,
-            properties= { "rating" : float(rate) }
-        )
-    #rate = filter(None,rate)
-    #print rate    
-    return render(request, "single.html", {'movieId':request.session['mid']})
+        
+        check_api = False
+        try:
+            urllib2.urlopen('http://localhost:7070', timeout=1)
+            check_api = True
+        except urllib2.URLError as err: 
+            check_api = False
+        r = 0
+        if check_api:
+            client = predictionio.EventClient(
+                access_key="9AGBBsMkyqSCHsbLsm1XL6I9ppt0WqNXW_O-fuY0yKoWw5j-_r7uiWA56LADGi9O",
+                url="http://localhost:7070",
+                threads=5,
+                qsize=500
+            )
+            client.create_event(
+                event="rate",
+                entity_type="user",
+                entity_id=user,
+                target_entity_type="item",
+                target_entity_id=item,
+                properties= { "rating" : float(rate) }
+            )
+    return HttpResponseRedirect('/polls/single/?mid='+request.session['mid']+'&single=')

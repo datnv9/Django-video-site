@@ -57,25 +57,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
                 <div class="header-top-right">
                     <div class="file">
+                        <form>
+				<a> User: {{user}} </a>
+			</form>
+                    </div>
+                    <div class="signin">
                         <form method="GET" action="{% url 'signout' %}">
                         <a href="{% url 'signout' %}">Log Out</a>
                         </form>
                     </div>
-                    <div class="signin">
+                    <!--<div class="signin">
                         <form method="GET" action="{% url 'signout' %}">
                         <a href="{% url 'signout' %}">Sign Up</a>
                         <a href="{% url 'signout' %}">Sign In</a>
                         </form>
-                        <!-- pop-up-box -->
                         <script type="text/javascript" src="{% static 'Scripts/js/modernizr.custom.min.js' %}"></script>
                         <link href="{% static 'Scripts/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
                         <script src="{% static 'Scripts/js/jquery.magnific-popup.js' %}" type="text/javascript"></script>
-                        <!--//pop-up-box -->
+        
                     </div>
                     <div class="signin">
-                        <!--<a href="index.html" class="play-icon popup-with-zoom-anim">Log out</a>-->
+           
                         
-                    </div>
+                    </div>-->
                     <div class="clearfix"> </div>
                 </div>
             </div>
@@ -93,17 +97,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <div class="drop-navigation drop-navigation">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="/polls" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                <li ><a href="/polls" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
                 <!--<li><a href="/polls/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>History</a></li>-->
                 <li><a href="/polls/recommend" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>Recommended<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
                 
             <div class="side-bottom">
-                <div class="side-bottom-icons">
+               <div class="side-bottom-icons">
                     <ul class="nav2">
                         <li><a href="#" class="facebook"> </a></li>
-                        <li><a href="#" class="facebook twitter"> </a></li>
-                        <li><a href="#" class="facebook chrome"> </a></li>
-                        <li><a href="#" class="facebook dribbble"> </a></li>
+                        <!--<li><a href="#" class="facebook twitter"> </a></li>-->
+                        <!--<li><a href="#" class="facebook chrome"> </a></li>-->
+                        <!--<li><a href="#" class="facebook dribbble"> </a></li>-->
                     </ul>
                 </div>
                 <div class="copyright">
@@ -134,8 +138,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <form action="{% url 'single' %}" method="GET">
                                 <!--{% csrf_token %}-->
                                 <input type = "hidden" value="9946" id="mid" name="mid"/>
-                                <input type = "hidden" value="9946" id="mid" name="mid"/>
-                                <button type="sumit" name="single">View</button>
                             </form>
                             <ul>
                                 <li>
@@ -165,7 +167,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <form action="{% url 'single' %}" method="GET">
                                 <!--{% csrf_token %}-->
                                 <input type = "hidden" value="1103" id="mid" name="mid"/>
-                                <button type="sumit" name="single">View</button>
+            
                             </form>
                             <ul>
                                 <li>
@@ -195,7 +197,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <form action="{% url 'single' %}" method="GET">
                                 <!--{% csrf_token %}-->
                                 <input type = "hidden" value="11816" id="mid" name="mid"/>
-                                <button type="sumit" name="single">View</button>
+
                             </form>
                             <ul>
                                 <li>
@@ -225,7 +227,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <form action="{% url 'single' %}" method="GET">
                                 <!--{% csrf_token %}-->
                                 <input type = "hidden" value="37616" id="mid" name="mid"/>
-                                <button type="sumit" name="single">View</button>
                             </form>
                             <ul>
                                 <li>
@@ -242,7 +243,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
-                            <a href="ingle/?mid=25750&single="><img id="imgm" src="{% static 'Scripts/images/childrenofthecorn.jpg' %}" alt="" /></a>
+                            <a href="single/?mid=25750&single="><img id="imgm" src="{% static 'Scripts/images/childrenofthecorn.jpg' %}" alt="" /></a>
                             <div class="time small-time">
                                 <p></p>
                             </div>
@@ -255,7 +256,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <form action="{% url 'single' %}" method="GET">
                                 <!--{% csrf_token %}-->
                                 <input type = "hidden" value="25750" id="mid" name="mid"/>
-                                <button type="sumit" name="single">View</button>
                             </form>
                             <ul>
                                 <li>
@@ -285,7 +285,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <form action="{% url 'single' %}" method="GET">
                                 <!--{% csrf_token %}-->
                                 <input type = "hidden" value="221" id="mid" name="mid"/>
-                                <button type="sumit" name="single">View</button>
                             </form>
                             <ul>
                                 <li>
@@ -303,6 +302,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="clearfix"> </div>
 				</div>
 
+            
+            
+            
             <div class="recommended">
                 <div class="recommended-grids">
                     <div class="recommended-info">
@@ -313,6 +315,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 
                 <div class="recommended-grids">
+                <div class="row">
                     {% for item in length %}
                         <div class="col-md-2 resent-grid recommended-grid">
                         <div class="resent-grid-img recommended-grid-img">
@@ -329,7 +332,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <form action="{% url 'single' %}" method="GET">
                                 <!--{% csrf_token %}-->
                                 <input type = "hidden" value="" id="mid{{item}}" name="mid" class="mid"/>
-                                <button type="sumit" name="" class="btnView" id="btnView{{item}}">View</button>
                             </form>
                             <ul>
                                 <li>
@@ -344,6 +346,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                     </div>
                     {% endfor %}
+                    </div>
                     
                     <div class="clearfix"> </div>
                 </div>
@@ -357,7 +360,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="footer-bottom">
                     <ul>
                         
-                        <li><a href="history.html" class="f-history">History</a></li>
+                        <li><a href="" class="f-history">History</a></li>
                         <li><a href="#small-dialog5" class="play-icon popup-with-zoom-anim f-history f-help">Help</a></li>
                     </ul>
                 </div>
@@ -433,7 +436,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 movies.push(response);
                                 $('#mid'+(index)).val(response.id);
                                 $('#btnView'+(index)).attr('name',response.id);
-                                $('#link'+index).attr('href','single/?mid='+response.id+'&single=');
+                                $('#link'+index).attr('href','/polls/single/?mid='+response.id+'&single=');
                                 document.getElementById('img'+(index)).src = 'https://image.tmdb.org/t/p/w500' + response.backdrop_path;
                                 document.getElementById("title"+(index)).innerHTML = response.title;
                                 document.getElementById("theloai"+(index)).innerHTML = response.genres[0].name;

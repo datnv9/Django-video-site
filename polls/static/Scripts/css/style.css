@@ -465,7 +465,7 @@ a.btn.btn-primary.btn-lg.see-button.hvr-shutter-out-horizontal {
 }
 .resent-grid-img iframe{
   width: 100%;
-  height: 642px;
+  height: auto;
 }
 .resent-grid-img a{
 	display:block;
@@ -1787,6 +1787,22 @@ background: url(../images/social.png) no-repeat 0px 0px;
 }
 .top-navigation{
 	display:none;
+}
+
+.box {
+    display: inline-block;
+    margin: 2px;
+}
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
 }
 /*-- responsive-design starts-here --*/
 @media (max-width: 1366px) {

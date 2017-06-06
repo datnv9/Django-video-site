@@ -51,7 +51,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</form>
 				</div>
 				<div class="header-top-right">
-					<div class="file">
+ 					<div class="file">
+						<form> 
+							<a>User: {{user}}</a>
+						</form>
+					</div>
+					<div class="signin">
 						<form method="GET" action="{% url 'signout' %}">
 							<a href="{% url 'signout' %}">Log Out</a>
 						</form>
@@ -150,25 +155,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<form action="{% url 'rate' %}" method="POST">
 							{% csrf_token %}
 							<!--<button type="submit"/> Great</button>-->
-							<input type="radio" name="rate" value="5" checked=true"/> &nbsp;Greate&nbsp;
+							<input type="radio" name="rate" id="rate5" value="5" /> &nbsp;Great&nbsp;
 
 
 
 							<!--<button type="submit"/> Very Good</button>-->
-							<input type="radio" name="rate" value="4" />&nbsp; Very Good&nbsp;
+							<input type="radio" name="rate" id="rate4" value="4" />&nbsp; Very Good&nbsp;
 
 
 
 							<!--<button type="submit"/>Good </button>-->
-							<input type="radio" name="rate" value="3" />&nbsp; Good&nbsp;
+							<input type="radio" name="rate" id="rate3" value="3" />&nbsp; Good&nbsp;
 
 
 
 							<!--<button type="submit"/> Bad</button>-->
-							<input type="radio" name="rate" value="2" />&nbsp; Bad&nbsp;
+							<input type="radio" name="rate" id="rate2" value="2" />&nbsp; Bad&nbsp;
 
 
-							<input type="radio" name="rate" value="1" />&nbsp; Very Bad &nbsp;
+							<input type="radio" name="rate" id="rate1" value="1" />&nbsp; Very Bad &nbsp;
 							<br>
 							<button type="submit">Rate</button>
 						</form>
@@ -567,6 +572,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </html>
 <script type="text/javascript">
 						var movieId = {{movieId }};
+						var rating = parseInt({{rating}});
+						console.log(rating);
 						$(document).ready(function () {
 							var settings = {
 								"async": true,
@@ -581,9 +588,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								console.log(response);
 								document.getElementById('img').src = 'https://image.tmdb.org/t/p/w500' + response.backdrop_path;
 								document.getElementById("title").innerHTML = response.title;
-								document.getElementById("theloai1").innerHTML = response.genres[0].name;
-								document.getElementById("theloai2").innerHTML = response.genres[1].name;
-								document.getElementById("theloai3").innerHTML = response.genres[2].name;
+								document.getElementById("theloai1").innerHTML = response.genres[0]?response.genres[0].name:"";
+								document.getElementById("theloai2").innerHTML = response.genres[1]?response.genres[1].name:"";
+								document.getElementById("theloai3").innerHTML = response.genres[2]?response.genres[2].name:"";			
+								if (rating>0) document.getElementById("rate"+rating).checked = true;
 							});
 						});
 
