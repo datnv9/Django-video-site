@@ -80,11 +80,7 @@ def index(request):
     #Read file csv
     if js: 
         for item in js['itemScores']:
-<<<<<<< HEAD
-            #print item
-=======
             print "item: ", item['item'], "\t score:", item['score']
->>>>>>> bc9aacd4478ac23e52db1b5e2b759fd77c5d44e6
             with open('links.csv') as file:
                 reader = csv.reader(file) 
                 for row in reader:
@@ -150,11 +146,7 @@ def recommend(request):
         #Read file csv
         if js:
             for item in js['itemScores']:
-<<<<<<< HEAD
-                #print "item:" + item
-=======
                 print "item: ", item['item'], "\t score: ", item['score']
->>>>>>> bc9aacd4478ac23e52db1b5e2b759fd77c5d44e6
                 with open('links.csv') as file:
                     reader = csv.reader(file) 
                     for row in reader:

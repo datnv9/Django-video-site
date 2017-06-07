@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME':'mydatabase'
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'getmovie',
+        'USER':'root',
+        'PASSWORD': 'abcd1234',
+        'HOST':'localhost',
+        'PORT':'3306',
     }
 }
 
